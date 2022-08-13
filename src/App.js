@@ -1,13 +1,25 @@
+import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import Navbar from "./Components/Layout/Navbar";
-import {BrowserRouter as Router, Route } from "react-router-dom";
+import Footer from "./Components/Layout/Footer";
+import Home from "./Components/Pages/Home";
+import About from "./Components/Pages/About";
+import NotFound from "./Components/Pages/NotFound";
 
 function App() {
   return (
     <Router>
-    <div className="flex flex-col justify-between h-screen">
+      <div className="flex flex-col justify-between h-screen">
       <Navbar/>
-      <main>Content</main>
-    </div>
+      <main className="container mx-auto px-3 pb-12">
+        <Routes>
+          <Route exact path='/' element={<Home/>}/>
+          <Route exact path='/about' element={<About/>}/>
+          <Route path='/notfound' element={<NotFound/>}/>
+          <Route path='/*' element={<NotFound/>}/>
+        </Routes>
+      </main>
+      <Footer/>
+      </div>
     </Router>
   );
 }
