@@ -2,7 +2,7 @@ import React from 'react'
 
 function About() {
   return (
-    <div className='text-center'>About</div>
+    <div className='text-center text-6xl'>About</div>
   )
 }
 
