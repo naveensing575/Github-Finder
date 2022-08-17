@@ -4,7 +4,7 @@ import Footer from "./Components/Layout/Footer";
 import Home from "./Components/Pages/Home";
 import About from "./Components/Pages/About";
 import NotFound from "./Components/Pages/NotFound";
-import {GithubProvider} from "./Components/Context/GithubContext";
+import { GithubProvider } from "./Components/Context/GithubContext";
 
 function App() {
   return (

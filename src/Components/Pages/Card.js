@@ -1,12 +1,12 @@
 import {useEffect, useContext} from 'react'
-import GithubContext from '../Context/GithubContext';
 import Spinner from '../Layout/Spinner';
 import UserList from './UserList';
+import GithubContext from '../Context/GithubContext';
 
 function Card() {
   const {users, loading, fetchUsers} = useContext(GithubContext);
   useEffect(() => {
-    fetchUsers()
+    fetchUsers();
   }, [])
   
   if(!loading){

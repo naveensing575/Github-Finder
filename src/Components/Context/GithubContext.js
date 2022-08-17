@@ -2,21 +2,30 @@ import {useState} from 'react'
 import { createContext } from 'react'
 
 const GithubContext=createContext();
-// const API=process.env.REACT_APP_GITHUB_URL;
-// const Token=process.env.REACT_APP_GITHUB_TOKEN;
+const API=process.env.REACT_APP_GITHUB_URL;
+const TOKEN=process.env.REACT_APP_GITHUB_TOKEN;
+//acc. to github docs, you have to add token with the bearer to fetch the users
+const Bearer = 'Bearer ' + TOKEN;
 
 export const GithubProvider = ({children})=>{
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const fetchUsers = async() =>{
-    const response= await fetch(`${process.env.REACT_APP_GITHUB_URL}/users`, {
-      headers: {  
-        Authorization: `token ${process.env.REACT_APP_GITHUB_TOKEN}`
-      }
+    await fetch(`${API}/users`, {
+      headers: {
+        Authorization: {Bearer}
+      },
+      method:'GET',
     })
-    const data= await response.json();
-    setUsers(data);
-    setLoading(false);
+    .then(res=>res.json())
+    .then((data)=>{
+      setUsers(data)
+      setLoading(false);
+    })
+    .catch((err)=>{
+      setLoading(false);
+      console.log(err);
+    })
   }
   return <GithubContext.Provider value={{
       users,
