@@ -4,36 +4,41 @@ import GithubReducer from '../Reducer/GithubReducer';
 const GithubContext=createContext();
 const API=process.env.REACT_APP_GITHUB_URL;
 const TOKEN=process.env.REACT_APP_GITHUB_TOKEN;
-const Bearer = `Bearer ${TOKEN}`
+const Bearer = `token ${TOKEN}`
 export const GithubProvider = ({children})=>{
   const initialState ={
     users: [],
-    loading: true
+    loading: false,
+    text: ''
   }
   const [state, dispatch] = useReducer(GithubReducer, initialState);
-  const fetchUsers = async() =>{
-    await fetch(`${API}/users`, {
+
+  //clear all the users
+  const clearUsers = () =>dispatch({
+    type: 'CLEAR_USERS'
+  })
+
+  const searchUsers = async(text) =>{
+    const params = new URLSearchParams({
+      q: text
+    })
+    const response = await fetch(`${API}/search/users?${params}`, {
       headers: {
         Authorization: {Bearer}
       },
       method:'GET',
     })
-    .then(res=>res.json())
-    .then((data)=>{
+    const {items} = await response.json();
      dispatch({
       type:'GET_USERS',
-      payload: data
+      payload: items
      })
-    })
-  //   .catch((err)=>{
-  //     setLoading(false);
-  //     console.log(err);
-  //   })
   }
   return <GithubContext.Provider value={{
       users: state.users,
       loading: state.loading,
-      fetchUsers
+      searchUsers,
+      clearUsers
     }}>
       {children}
     </GithubContext.Provider>
