@@ -4,7 +4,7 @@ import GithubReducer from '../Reducer/GithubReducer';
 const GithubContext=createContext();
 const API=process.env.REACT_APP_GITHUB_URL;
 const TOKEN=process.env.REACT_APP_GITHUB_TOKEN;
-const Bearer = `token ${TOKEN}`
+const Bearer = `bearer ${TOKEN}`
 export const GithubProvider = ({children})=>{
   const initialState ={
     users: [],
@@ -20,7 +20,7 @@ export const GithubProvider = ({children})=>{
 
   const searchUsers = async(text) =>{
     const params = new URLSearchParams({
-      q: text
+      q: text||'random'
     })
     const response = await fetch(`${API}/search/users?${params}`, {
       headers: {

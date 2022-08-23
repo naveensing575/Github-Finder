@@ -9,12 +9,11 @@ function UserSearch() {
   }
   const handleSubmit =(e) =>{
     e.preventDefault();
+    searchUsers(search);
     if(search==='')
     {
-      alert('Please enter something!')
-    }
-    else{
-      searchUsers(search)
+      alert('Please enter something!');
+      setSearch('')
     }
   }
   

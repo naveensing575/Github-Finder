@@ -1,5 +1,5 @@
 import {useContext} from 'react';
-import Spinner from '../Layout/Spinner';
+import Spinner from '../Shared/Spinner';
 import UserList from './UserList';
 import GithubContext from '../Context/GithubContext';
 
