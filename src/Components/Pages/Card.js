@@ -8,7 +8,8 @@ function Card() {
   
     return loading? (<h3><Spinner/></h3>):(
       <div className='grid grid-cols-1 gap-8 xl:grid-cols-4 lg: grid-cols-3 md: grid-cols-2'>
-        {users.map((user)=>(<UserList key={user.id} user={user}/>))}
+      {/* you have to pass down a fall-back value so that it won't throw type error' */}
+        {(users?users:[]).map((user)=>(<UserList key={user.id} user={user}/>))}
     </div>  
     )
 }

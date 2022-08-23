@@ -9,10 +9,12 @@ function UserSearch() {
   }
   const handleSubmit =(e) =>{
     e.preventDefault();
-    searchUsers(search);
     if(search==='')
     {
-      alert('Please enter something!');
+      alert('Please enter something!')
+    }
+    else{
+      searchUsers(search);
       setSearch('')
     }
   }
@@ -35,7 +37,7 @@ function UserSearch() {
           </div>
         </form>
       </div>
-      {users.length>0 && (
+      {(users?users:[]).length>0 && (
         <div>
           <button className='btn btn-ghost btn-lg' onClick={clearUsers}>
             Clear
