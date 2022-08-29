@@ -1,24 +1,12 @@
-import {Link} from 'react-router-dom';
-import {FaHome} from 'react-icons/fa';
-function NotFound() {
-  return (
-    <div className='hero'>
-      <div className="text-center hero-content">
-        <div className="mx-w-lg">
-          <h1 className="text-8xl font-bold mb-8">
-            Oops!
-          </h1>
-          <p className='text-5xl mb-8'>
-            404 - Page not found!
-          </p>
-          <Link to='/' className='btn btn-primary btn-lg'>
-            <FaHome className='mr-2'/>
-            Back To Home
-          </Link>
-        </div>
-      </div>
-    </div>
-  )
-}
+import React from 'react';
 
-export default NotFound
+const NotFound = () => {
+  return (
+    <div>
+      <h1>Not Found</h1>
+      <p className='lead'>The page you are looking for does not exist...</p>
+    </div>
+  );
+};
+
+export default NotFound;

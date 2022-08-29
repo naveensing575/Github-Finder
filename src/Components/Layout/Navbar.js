@@ -1,37 +1,33 @@
-import {Link} from 'react-router-dom';
-import {FaGithub} from 'react-icons/fa';
+import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
-function Navbar({title}) {
+const Navbar = ({ icon, title }) => {
   return (
-    <nav className='navbar mb-12 shadow-lg bg-neutral text-neutral-content '>
-      <div className="container mx-auto">
-        <div className="flex-none px-2 mx-2">
-          {<FaGithub className='inline pr-2 text-3xl'/>}
-          <Link to='/' className='text-lg font-bold align-middle'>
-          {title}
-          </Link>
-        </div>
-        <div className="flex-1 px-2 mx-2">
-          <div className="flex justify-end">
-            <Link to='/' className='btn btn-ghost btn-sm rounded-btn'>
-              Home
-            </Link>
-            <Link to='/about' className='btn btn-ghost btn-sm rounded-btn'>
-              About
-            </Link>
-          </div>
-        </div>
-      </div>
+    <nav className='navbar bg-primary' style={{fontFamily:'cursive'}}>
+      <Link type='none' to='/' >
+        <i className={icon} /> {title}
+      </Link>
+      <ul>
+        <li>
+          <Link to='/'>Home</Link>
+        </li>
+        <li>
+          <Link to='/about'>About</Link>
+        </li>
+      </ul>
     </nav>
-  )
-}
+  );
+};
 
-Navbar.propTypes={
+Navbar.defaultProps = {
+  title: 'Github Finder',
+  icon: 'fab fa-github'
+};
+
+Navbar.propTypes = {
   title: PropTypes.string.isRequired,
-}
+  icon: PropTypes.string.isRequired
+};
 
-Navbar.defaultProps={
-  title: 'Github Finder'
-}
-export default Navbar
+export default Navbar;

@@ -1,9 +1,13 @@
-import React from 'react'
+import React, { Fragment } from 'react';
 
-function About() {
+const About = () => {
   return (
-    <div className='text-center text-6xl'>About</div>
-  )
-}
+    <Fragment>
+      <h1>About This App</h1>
+      <p>App to search Github users</p>
+      <p>Version: 1.0.0</p>
+    </Fragment>
+  );
+};
 
-export default About
+export default About;

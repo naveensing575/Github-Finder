@@ -1,13 +1,12 @@
-import Card from './Card'
-import UserSearch from './UserSearch'
+import React, { Fragment } from 'react';
+import Search from '../users/Search';
+import Users from '../users/Users';
 
-function Home() {
-  return (
-    <>
-      <UserSearch/>
-      <Card/>
-    </>
-  )
-}
+const Home = () => (
+  <Fragment>
+    <Search />
+    <Users />
+  </Fragment>
+);
 
-export default Home
+export default Home;

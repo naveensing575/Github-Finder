@@ -1,32 +1,38 @@
-import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
-import Navbar from "./Components/Layout/Navbar";
-import Footer from "./Components/Layout/Footer";
-import Home from "./Components/Pages/Home";
-import About from "./Components/Pages/About";
-import Users from "./Components/Pages/Users";
-import NotFound from "./Components/Pages/NotFound";
-import { GithubProvider } from "./Components/Context/GithubContext";
+import React from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Navbar from './components/layout/Navbar';
+import User from './components/users/User';
+import Alert from './components/layout/Alert';
+import Home from './components/pages/Home';
+import About from './components/pages/About';
+import NotFound from './components/pages/NotFound';
 
-function App() {
+import GithubState from './context/github/GithubState';
+import AlertState from './context/alert/AlertState';
+
+import './App.css';
+
+const App = () => {
   return (
-    <GithubProvider>
-    <Router>
-      <div className="flex flex-col justify-between h-screen">
-      <Navbar/>
-      <main className="container mx-auto px-3 pb-12">
-        <Routes>
-          <Route exact path='/' element={<Home/>}/>
-          <Route exact path='/about' element={<About/>}/>
-          <Route exact path='/user/:login' element={<Users/>}/>
-          <Route path='/notfound' element={<NotFound/>}/>
-          <Route path='/*' element={<NotFound/>}/>
-        </Routes>
-      </main>
-      <Footer/>
-      </div>
-    </Router>
-    </GithubProvider>
+    <GithubState>
+      <AlertState>
+        <Router>
+          <div className='App'>
+            <Navbar />
+            <div className='container'>
+              <Alert />
+              <Switch>
+                <Route exact path='/' component={Home} />
+                <Route exact path='/about' component={About} />
+                <Route exact path='/user/:login' component={User} />
+                <Route component={NotFound} />
+              </Switch>
+            </div>
+          </div>
+        </Router>
+      </AlertState>
+    </GithubState>
   );
-}
+};
 
-export default App; 
+export default App;
